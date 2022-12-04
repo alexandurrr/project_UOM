@@ -18,7 +18,7 @@ namespace UoMLibrary
         string getBaseUnit(string baseunitName);
         string getBaseUnitName(string baseunitName, string annotation);
         string convertToBase(string baseunitName, double value, string conversionType);
-        string convert_to_final(string baseunitName, double value, string conversionType, string annotation);
+        string convert_to_final(string baseunitName, double value, string conversionType, string annotation, int selectedIndex);
 
     }
 }

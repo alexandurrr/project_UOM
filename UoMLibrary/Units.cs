@@ -360,12 +360,12 @@ namespace UoMLibrary
             return null;
         }
 
-        public string convert_to_final(string baseunitName, double value, string conversionType, string annotation)
+        public string convert_to_final(string baseunitName, double value, string conversionType, string annotation, int selectedIndex)
         {
             string textBox3;
-            if (baseunitName.Contains("Base unit:"))
+            if (selectedIndex == 1)
             {
-                textBox3 = String.Format("{0}: {1} {2}", baseunitName, value, annotation);
+                textBox3 = String.Format("Conversion: {0}, \n{1} {2}", baseunitName, value, annotation);
                 baseunitName = textBox3;
                 return baseunitName;
             }
@@ -387,7 +387,7 @@ namespace UoMLibrary
                                     string factor = xmlReader.ReadString();
                                     double d = double.Parse(factor, CultureInfo.InvariantCulture);
                                     var result = (0 - value) / (0 - (double)d);
-                                    textBox3 = String.Format("Conversion: {0}, is {1} {2}", name, result, annotation);
+                                    textBox3 = String.Format("Conversion: {0}, is \n{1} {2}", name, result, annotation);
                                     baseunitName = textBox3;
                                     return baseunitName;
                                 }
@@ -401,7 +401,7 @@ namespace UoMLibrary
                                     string s_denominator = xmlReader.ReadString();
                                     double denominator = double.Parse(s_denominator, CultureInfo.InvariantCulture);
                                     var result = (0 - (double)numerator) / (0 - (double)denominator) * value;
-                                    textBox3 = String.Format("Conversion: {0}, is {1} {2}", name, result, annotation);
+                                    textBox3 = String.Format("Conversion: {0}, is \n{1} {2}", name, result, annotation);
                                     baseunitName = textBox3;
                                     return baseunitName;
                                 }
@@ -426,7 +426,7 @@ namespace UoMLibrary
 
                                     var result = (a - c * value) / (d * value - b);
                                     baseunitName = result.ToString();
-                                    textBox3 = String.Format("Conversion: {0}, is {1} {2}", name, result, annotation);
+                                    textBox3 = String.Format("Conversion: {0}, is \n{1} {2}", name, result, annotation);
                                     baseunitName = textBox3;
                                     return baseunitName;
                                 }

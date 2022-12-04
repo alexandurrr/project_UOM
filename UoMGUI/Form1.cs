@@ -7,6 +7,7 @@ namespace UoMGUI
     public partial class Form1 : Form
     {
         bool isbaseUnit = false;
+        string nameBase;
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +30,8 @@ namespace UoMGUI
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            isbaseUnit = false;
+            nameBase = "";
             comboBox4.Items.Clear();
             IUnits units = new Units();
             string baseunit = units.getBaseUnit(comboBox3.Text);
@@ -43,8 +46,8 @@ namespace UoMGUI
             else
             {
                 string baseUnitName = units.getBaseUnitName(comboBox3.Text, baseunit);
-                string addBase = String.Format("Base unit: {0}", baseUnitName);
-                units.ListAllSameBaseUnit<string>(baseunit, comboBox3.Text, addBase).ForEach(i => comboBox4.Items.Add(i));
+                nameBase = baseUnitName;
+                units.ListAllSameBaseUnit<string>(baseunit, comboBox3.Text, baseUnitName).ForEach(i => comboBox4.Items.Add(i));
             }
         }
 
@@ -56,6 +59,9 @@ namespace UoMGUI
         private void button1_Click(object sender, EventArgs e)
         {
             IUnits units = new Units();
+            int selectedIndex = 0;
+            if (nameBase == comboBox4.Text && comboBox4.SelectedIndex == 0){selectedIndex = 1;}
+
             if (textBox1.Text.Trim().Length == 0 || comboBox3.Text.Trim().Length == 0 || comboBox4.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Need values!");
@@ -67,7 +73,7 @@ namespace UoMGUI
                 {
                     string annotation2 = units.findAnnotation(comboBox4.Text);
                     string toConversionName2 = units.findTypeOfConversion(comboBox4.Text);
-                    string resultfinal = units.convert_to_final(comboBox4.Text, num, toConversionName2, annotation2);
+                    string resultfinal = units.convert_to_final(comboBox4.Text, num, toConversionName2, annotation2, selectedIndex);
                     textBox2.Text = resultfinal;
                     isbaseUnit = true;
                 }
@@ -80,7 +86,7 @@ namespace UoMGUI
                     newval = double.Parse(from_result, CultureInfo.InvariantCulture);
                     string annotation = units.findAnnotation(comboBox4.Text);
 
-                    string resultfinal = units.convert_to_final(comboBox4.Text, newval, toConversionName, annotation);
+                    string resultfinal = units.convert_to_final(comboBox4.Text, newval, toConversionName, annotation, selectedIndex);
                     textBox2.Text = resultfinal;
                     isbaseUnit = false;
                 }
