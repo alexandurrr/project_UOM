@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "UoMGUI/1.0.0": {
+        "dependencies": {
+          "UoMLibrary": "1.0.0"
+        },
+        "runtime": {
+          "UoMGUI.dll": {}
+        }
+      },
+      "UoMLibrary/1.0.0": {
+        "runtime": {
+          "UoMLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "UoMGUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UoMLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

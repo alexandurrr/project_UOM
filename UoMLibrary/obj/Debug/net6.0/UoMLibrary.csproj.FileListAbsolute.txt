@@ -1,0 +1,12 @@
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.csproj.AssemblyReference.cache
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.AssemblyInfoInputs.cache
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.AssemblyInfo.cs
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.csproj.CoreCompileInputs.cache
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\bin\Debug\net6.0\UoMLibrary.deps.json
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\bin\Debug\net6.0\UoMLibrary.dll
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\bin\Debug\net6.0\UoMLibrary.pdb
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.dll
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\refint\UoMLibrary.dll
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.pdb
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\ref\UoMLibrary.dll
