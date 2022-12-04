@@ -10,3 +10,4 @@ C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrar
 C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\refint\UoMLibrary.dll
 C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\UoMLibrary.pdb
 C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\obj\Debug\net6.0\ref\UoMLibrary.dll
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\bin\Debug\net6.0\dataUnits.xml

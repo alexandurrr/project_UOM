@@ -18,3 +18,4 @@ C:\Users\alexa\source\repos\UnitsOfMeasure\UoMGUI\obj\Debug\net6.0-windows\UoMGU
 C:\Users\alexa\source\repos\UnitsOfMeasure\UoMGUI\bin\Debug\net6.0-windows\UoMLibrary.dll
 C:\Users\alexa\source\repos\UnitsOfMeasure\UoMGUI\bin\Debug\net6.0-windows\UoMLibrary.pdb
 C:\Users\alexa\source\repos\UnitsOfMeasure\UoMGUI\obj\Debug\net6.0-windows\UoMGUI.csproj.CopyComplete
+C:\Users\alexa\source\repos\UnitsOfMeasure\UoMGUI\bin\Debug\net6.0-windows\dataUnits.xml

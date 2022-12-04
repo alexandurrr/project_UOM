@@ -86,5 +86,16 @@ namespace UoMGUI
                 }
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != 'E' && e.KeyChar != '+')
+                e.Handled = true;
+        }
     }
 }
