@@ -1,34 +1,37 @@
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Collections.Generic;
 using System.Globalization;
 using UoMLibrary;
 
 namespace UoMGUI
 {
-    public partial class Form1 : Form
+    public partial class GUI : Form
     {
         bool isbaseUnit = false;
         string nameBase;
-        public Form1()
+        public GUI()
         {
             InitializeComponent();
             IUnits units = new Units();
-            units.QuantityUnits<string>().ForEach(i => comboBox1.Items.Add(i));
+            IxmlReader xmlReader = new xmlReader();
+            xmlReader.QuantityUnits<string>().ForEach(i => comboBox1.Items.Add(i));
             units.ListAllUOM<string>().ForEach(i => comboBox3.Items.Add(i));
-            textBox3.Text = units.ListUnitDimensions();
+            textBox3.Text = xmlReader.ListUnitDimensions();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
-            IUnits units = new Units();
-            units.ListAllUOMforQC<string>(comboBox1.Text).ForEach(i => comboBox2.Items.Add(i));
+            IxmlReader xmlReader = new xmlReader();
+            xmlReader.ListAllUOMforQC<string>(comboBox1.Text).ForEach(i => comboBox2.Items.Add(i));
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox5.Items.Clear();
-            IUnits units = new Units();
-            units.FindAliasesforUOM<string>(comboBox2.Text).ForEach(i => comboBox5.Items.Add(i));
+            IxmlReader xmlReader = new xmlReader();
+            xmlReader.FindAliasesforUOM<string>(comboBox2.Text).ForEach(i => comboBox5.Items.Add(i));
+
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)

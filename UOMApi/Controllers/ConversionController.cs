@@ -11,12 +11,13 @@ namespace UOMApi.Controllers
     public class ConversionController : ControllerBase
     {
         IUnits units = new Units();
+        IxmlReader xmlReader = new xmlReader();
         [Route("AllDimensionUnits")]
         [HttpGet]
         public IActionResult GetUnitDimensions()
         {
 
-            return Ok(units.ListUnitDimensions());
+            return Ok(xmlReader.ListUnitDimensions());
         }
 
         [Route("Aliases")]
@@ -24,7 +25,7 @@ namespace UOMApi.Controllers
         public IActionResult GetAliasesforUOM(string uom)
         {
 
-            return Ok(units.FindAliasesforUOM<string>(uom));
+            return Ok(xmlReader.FindAliasesforUOM<string>(uom));
         }
 
         [Route("AllQC")]
@@ -32,7 +33,7 @@ namespace UOMApi.Controllers
         public IActionResult GetQC()
         {
 
-            return Ok(units.QuantityUnits<string>());
+            return Ok(xmlReader.QuantityUnits<string>());
         }
 
         [Route("UOMifQC")]
@@ -40,7 +41,7 @@ namespace UOMApi.Controllers
         public IActionResult AllUOMforQC(string quantityclass)
         {
 
-            return Ok(units.ListAllUOMforQC<string>(quantityclass));
+            return Ok(xmlReader.ListAllUOMforQC<string>(quantityclass));
         }
 
         [HttpPost]

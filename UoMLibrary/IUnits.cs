@@ -8,11 +8,7 @@ namespace UoMLibrary
 {
     public interface IUnits
     {
-        string ListUnitDimensions();
-        List<T> FindAliasesforUOM<T>(string uom);
-        List<T> QuantityUnits<T>();
         List<T> ListAllUOM<T>();
-        List<T> ListAllUOMforQC<T>(string selectedText);
         List<T> ListAllSameBaseUnit<T> (string baseunit, string textName, string addBase);
         string findTypeOfConversion(string baseunitName);
         string findAnnotation(string annotation);
