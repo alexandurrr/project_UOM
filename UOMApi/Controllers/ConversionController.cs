@@ -11,12 +11,22 @@ namespace UOMApi.Controllers
     public class ConversionController : ControllerBase
     {
         IUnits units = new Units();
+        [Route("AllQC")]
         [HttpGet]
-        public IActionResult Get(string fromUnit, double value, string toUnit)
+        public IActionResult Get()
         {
-            string test = fromUnit+ ":" + value+ ":" + toUnit;
-            return Ok(test);
+
+            return Ok(units.QuantityUnits<string>());
         }
+
+        [Route("UOMifQC")]
+        [HttpPost]
+        public IActionResult AllUOMforQC(string quantityclass)
+        {
+
+            return Ok(units.ListAllUOMforQC<string>(quantityclass));
+        }
+
         [HttpPost]
         public IActionResult Post(string fromUnit, double value, string toUnit)
         {
