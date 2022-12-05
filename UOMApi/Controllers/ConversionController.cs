@@ -11,9 +11,25 @@ namespace UOMApi.Controllers
     public class ConversionController : ControllerBase
     {
         IUnits units = new Units();
+        [Route("AllDimensionUnits")]
+        [HttpGet]
+        public IActionResult GetUnitDimensions()
+        {
+
+            return Ok(units.ListUnitDimensions());
+        }
+
+        [Route("Aliases")]
+        [HttpGet]
+        public IActionResult GetAliasesforUOM(string uom)
+        {
+
+            return Ok(units.FindAliasesforUOM<string>(uom));
+        }
+
         [Route("AllQC")]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetQC()
         {
 
             return Ok(units.QuantityUnits<string>());

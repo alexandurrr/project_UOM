@@ -14,6 +14,7 @@ namespace UoMGUI
             IUnits units = new Units();
             units.QuantityUnits<string>().ForEach(i => comboBox1.Items.Add(i));
             units.ListAllUOM<string>().ForEach(i => comboBox3.Items.Add(i));
+            textBox3.Text = units.ListUnitDimensions();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -25,7 +26,9 @@ namespace UoMGUI
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            comboBox5.Items.Clear();
+            IUnits units = new Units();
+            units.FindAliasesforUOM<string>(comboBox2.Text).ForEach(i => comboBox5.Items.Add(i));
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,6 +105,16 @@ namespace UoMGUI
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != 'E' && e.KeyChar != '+')
                 e.Handled = true;
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
