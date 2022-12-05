@@ -453,5 +453,35 @@ namespace UoMLibrary
             return postFinal;
         }
 
+        public string conversionSequenceGUI(string fromUnit, string value, string toUnit, bool isbaseUnit, int selectedIndex)
+        {
+            double num = double.Parse(value, CultureInfo.InvariantCulture);
+            string returnString;
+            if (isbaseUnit && !toUnit.Contains("Base unit: none"))
+            {
+                string annotation2 = findAnnotation(toUnit);
+                string toConversionName2 = findTypeOfConversion(toUnit);
+                string resultfinal = convert_to_final(toUnit, num, toConversionName2, annotation2, selectedIndex);
+                returnString = resultfinal;
+                isbaseUnit = true;
+                return returnString;
+            }
+            else if (!toUnit.Contains("Base unit: none"))
+            {
+                string fromConversionName = findTypeOfConversion(fromUnit);
+                string toConversionName = findTypeOfConversion(toUnit);
+                string from_result = convertToBase(fromUnit, num, fromConversionName);
+                double newval;
+                newval = double.Parse(from_result, CultureInfo.InvariantCulture);
+                string annotation = findAnnotation(toUnit);
+
+                string resultfinal = convert_to_final(toUnit, newval, toConversionName, annotation, selectedIndex);
+                returnString = resultfinal;
+                isbaseUnit = false;
+                return returnString;
+            }
+            return "Conversion failed!";
+        }
+
     }
 }

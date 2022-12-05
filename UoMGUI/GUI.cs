@@ -72,31 +72,8 @@ namespace UoMGUI
             {
                 MessageBox.Show("Need values!");
             }
-            else
-            {
-                double num = double.Parse(textBox1.Text, CultureInfo.InvariantCulture);
-                if (isbaseUnit && !comboBox4.Text.Contains("Base unit: none"))
-                {
-                    string annotation2 = units.findAnnotation(comboBox4.Text);
-                    string toConversionName2 = units.findTypeOfConversion(comboBox4.Text);
-                    string resultfinal = units.convert_to_final(comboBox4.Text, num, toConversionName2, annotation2, selectedIndex);
-                    textBox2.Text = resultfinal;
-                    isbaseUnit = true;
-                }
-                else if (!comboBox4.Text.Contains("Base unit: none"))
-                {
-                    string fromConversionName = units.findTypeOfConversion(comboBox3.Text);
-                    string toConversionName = units.findTypeOfConversion(comboBox4.Text);
-                    string from_result = units.convertToBase(comboBox3.Text, num, fromConversionName);
-                    double newval;
-                    newval = double.Parse(from_result, CultureInfo.InvariantCulture);
-                    string annotation = units.findAnnotation(comboBox4.Text);
 
-                    string resultfinal = units.convert_to_final(comboBox4.Text, newval, toConversionName, annotation, selectedIndex);
-                    textBox2.Text = resultfinal;
-                    isbaseUnit = false;
-                }
-            }
+            textBox2.Text = units.conversionSequenceGUI(comboBox3.Text, textBox1.Text, comboBox4.Text, isbaseUnit, selectedIndex);            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
