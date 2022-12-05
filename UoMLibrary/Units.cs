@@ -11,12 +11,11 @@ namespace UoMLibrary
 {
     public class Units : IUnits
     {
-
         public List<T> QuantityUnits<T>()
         {
 
             List<T> quantityClasses = new List<T>();
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -42,7 +41,7 @@ namespace UoMLibrary
         public List<T> ListAllUOM<T>()
         {
             List<T> names = new List<T>();
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -66,7 +65,7 @@ namespace UoMLibrary
         public List<T> ListAllUOMforQC<T>(string selectedText)
         {
             List<T> unitOfMeasures = new List<T>();
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -98,7 +97,7 @@ namespace UoMLibrary
 
             List<T> baseUnits = new List<T>();
             baseUnits.Add((T)Convert.ChangeType(addBase, typeof(T)));
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -129,7 +128,7 @@ namespace UoMLibrary
 
         public string findTypeOfConversion(string baseunitName)
         {
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -161,7 +160,7 @@ namespace UoMLibrary
 
         public string findAnnotation(string annotation)
         {
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"); 
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -200,7 +199,7 @@ namespace UoMLibrary
 
         public string checkIfOther(string baseunitName)
         {
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -232,7 +231,7 @@ namespace UoMLibrary
 
         public string getBaseUnit(string baseunitName)
         {
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -262,7 +261,7 @@ namespace UoMLibrary
 
         public string getBaseUnitName(string baseunitName, string annotation)
         {
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -293,7 +292,7 @@ namespace UoMLibrary
 
         public string convertToBase(string baseunitName, double value, string conversionType)
         {
-            XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
             while (xmlReader.Read())
             {
                 if (xmlReader.IsStartElement())
@@ -371,7 +370,7 @@ namespace UoMLibrary
             }
             else
             {
-                XmlReader xmlReader = XmlReader.Create("dataUnits.xml");
+                XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
                 while (xmlReader.Read())
                 {
                     if (xmlReader.IsStartElement())
