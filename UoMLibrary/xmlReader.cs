@@ -9,30 +9,6 @@ namespace UoMLibrary
 {
     public class xmlReader : IxmlReader
     {
-        public List<T> ListUnitDimensions<T>()
-        {
-            List<T> unitDimensions = new List<T>();
-            unitDimensions.Add((T)Convert.ChangeType("Symbol   Definition/Meaning  SI Unit (if applicable)", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("A  angle   radian", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("D  temperature difference  kelvin", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("I  electrical current  ampere", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("J  luminous intensity  candela", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("K  thermodynamic temperature", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("L  length  meter", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("M  mass    kilogram", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("N  amount of substance  mole", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("S  solid angle  steradian", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("T  time  second", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("1  the number one  NA", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("2  squared (e.g., M2)  NA", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("3  cubed  NA", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("4  4th power (5=5th, etc.)  NA", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("/  division  NA", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("none  Special notation indicating  NA", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("        unit for which a normal", typeof(T)));
-            unitDimensions.Add((T)Convert.ChangeType("        dimensionless analysis is possible.", typeof(T)));
-            return unitDimensions;
-        }
         public List<T> FindAliasesforUOM<T>(string uom)
         {
             List<T> aliases = new List<T>();
@@ -106,6 +82,33 @@ namespace UoMLibrary
 
             }
             return unitOfMeasures;
+        }
+    }
+    public class ListUnitDimensions : xmlReader
+    {
+        public List<T> ListUD<T>()
+        {
+            List<T> unitDimensions = new List<T>();
+            unitDimensions.Add((T)Convert.ChangeType("Symbol   Definition/Meaning  SI Unit (if applicable)", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("A  angle   radian", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("D  temperature difference  kelvin", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("I  electrical current  ampere", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("J  luminous intensity  candela", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("K  thermodynamic temperature", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("L  length  meter", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("M  mass    kilogram", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("N  amount of substance  mole", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("S  solid angle  steradian", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("T  time  second", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("1  the number one  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("2  squared (e.g., M2)  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("3  cubed  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("4  4th power (5=5th, etc.)  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("/  division  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("none  Special notation indicating  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("        unit for which a normal", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("        dimensionless analysis is possible.", typeof(T)));
+            return unitDimensions;
         }
     }
 }

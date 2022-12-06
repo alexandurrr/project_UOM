@@ -8,7 +8,6 @@ namespace UoMLibrary
 {
     public interface IxmlReader
     {
-        List<T> ListUnitDimensions<T>();
         List<T> FindAliasesforUOM<T>(string uom);
         List<T> QuantityUnits<T>();
         List<T> ListAllUOMforQC<T>(string selectedText);

@@ -16,7 +16,8 @@ namespace UoMGUI
             IxmlReader xmlReader = new xmlReader();
             xmlReader.QuantityUnits<string>().ForEach(i => comboBox1.Items.Add(i));
             units.ListAllUOM<string>().ForEach(i => comboBox3.Items.Add(i));
-            xmlReader.ListUnitDimensions<string>().ForEach(i => listBox1.Items.Add(i));
+            ListUnitDimensions listUD = new ListUnitDimensions();
+            listUD.ListUD<string>().ForEach(i => listBox1.Items.Add(i)); ;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
