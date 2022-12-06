@@ -9,27 +9,28 @@ namespace UoMLibrary
 {
     public class xmlReader : IxmlReader
     {
-        public string ListUnitDimensions()
+        public List<T> ListUnitDimensions<T>()
         {
-            string unitDimensions = String.Format("Symbol   Definition/Meaning  SI Unit (if applicable)\n" +
-                "A  angle   radian\n" +
-                "D  temperature difference  kelvin\n" +
-                "I  electrical current  ampere\n" +
-                "J  luminous intensity  candela\n" +
-                "K  thermodynamic temperature\n" +
-                "L  length  meter\n" +
-                "M  mass    kilogram\n" +
-                "N  amount of substance  mole\n" +
-                "S  solid angle  steradian\n" +
-                "T  time  second\n" +
-                "1  the number one  NA\n" +
-                "2  squared (e.g., M2)  NA\n" +
-                "3  cubed  NA\n" +
-                "4  4th power (5=5th, etc.)  NA\n" +
-                "/  division  NA\n" +
-                "none  Special notation indicating unit  NA\n" +
-                "      for which a normal\n" +
-                "      dimensionless analysis is possible.");
+            List<T> unitDimensions = new List<T>();
+            unitDimensions.Add((T)Convert.ChangeType("Symbol   Definition/Meaning  SI Unit (if applicable)", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("A  angle   radian", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("D  temperature difference  kelvin", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("I  electrical current  ampere", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("J  luminous intensity  candela", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("K  thermodynamic temperature", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("L  length  meter", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("M  mass    kilogram", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("N  amount of substance  mole", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("S  solid angle  steradian", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("T  time  second", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("1  the number one  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("2  squared (e.g., M2)  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("3  cubed  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("4  4th power (5=5th, etc.)  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("/  division  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("none  Special notation indicating  NA", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("        unit for which a normal", typeof(T)));
+            unitDimensions.Add((T)Convert.ChangeType("        dimensionless analysis is possible.", typeof(T)));
             return unitDimensions;
         }
         public List<T> FindAliasesforUOM<T>(string uom)

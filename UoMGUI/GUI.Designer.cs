@@ -43,8 +43,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -62,7 +62,7 @@
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(533, 50);
+            this.comboBox2.Location = new System.Drawing.Point(501, 54);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(218, 28);
@@ -103,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(533, 14);
+            this.label2.Location = new System.Drawing.Point(501, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(222, 20);
             this.label2.TabIndex = 5;
@@ -149,7 +149,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(533, 377);
+            this.label6.Location = new System.Drawing.Point(501, 381);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 20);
             this.label6.TabIndex = 10;
@@ -157,11 +157,11 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(533, 401);
+            this.textBox2.Location = new System.Drawing.Point(501, 405);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(257, 65);
+            this.textBox2.Size = new System.Drawing.Size(379, 65);
             this.textBox2.TabIndex = 11;
             // 
             // button1
@@ -179,7 +179,7 @@
             // 
             this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(533, 129);
+            this.comboBox5.Location = new System.Drawing.Point(501, 133);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(218, 28);
             this.comboBox5.TabIndex = 13;
@@ -188,37 +188,38 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(533, 95);
+            this.label7.Location = new System.Drawing.Point(501, 99);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(163, 20);
             this.label7.TabIndex = 14;
             this.label7.Text = "Aliases for given UOM: ";
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(533, 197);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(282, 160);
-            this.textBox3.TabIndex = 15;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(533, 169);
+            this.label8.Location = new System.Drawing.Point(501, 173);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(120, 20);
             this.label8.TabIndex = 16;
             this.label8.Text = "Unit Dimensions:";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(501, 199);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(379, 184);
+            this.listBox1.TabIndex = 17;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox5);
             this.Controls.Add(this.button1);
@@ -259,7 +260,7 @@
         private Button button1;
         private ComboBox comboBox5;
         private Label label7;
-        private TextBox textBox3;
         private Label label8;
+        private ListBox listBox1;
     }
 }

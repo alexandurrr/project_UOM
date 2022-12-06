@@ -17,7 +17,7 @@ namespace UOMApi.Controllers
         public IActionResult GetUnitDimensions()
         {
 
-            return Ok(xmlReader.ListUnitDimensions());
+            return Ok(xmlReader.ListUnitDimensions<string>());
         }
 
         [Route("Aliases")]

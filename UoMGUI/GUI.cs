@@ -16,7 +16,7 @@ namespace UoMGUI
             IxmlReader xmlReader = new xmlReader();
             xmlReader.QuantityUnits<string>().ForEach(i => comboBox1.Items.Add(i));
             units.ListAllUOM<string>().ForEach(i => comboBox3.Items.Add(i));
-            textBox3.Text = xmlReader.ListUnitDimensions();
+            xmlReader.ListUnitDimensions<string>().ForEach(i => listBox1.Items.Add(i));
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,6 +95,11 @@ namespace UoMGUI
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
