@@ -14,23 +14,25 @@ namespace UoMLibrary
         public List<T> ListAllUOM<T>()
         {
             List<T> names = new List<T>();
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if (xmlReader.Name.ToString() == "Name")
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadElementContentAsString();
-                        // Ensure we have a proper string to search for.
-                        if (!string.IsNullOrEmpty(name))
+                        if (xmlReader.Name.ToString() == "Name")
                         {
-                            if (!names.Contains((T)Convert.ChangeType(name, typeof(T))))
-                                names.Add((T)Convert.ChangeType(name, typeof(T)));
+                            string name = xmlReader.ReadElementContentAsString();
+                            // Ensure we have a proper string to search for.
+                            if (!string.IsNullOrEmpty(name))
+                            {
+                                if (!names.Contains((T)Convert.ChangeType(name, typeof(T))))
+                                    names.Add((T)Convert.ChangeType(name, typeof(T)));
+                            }
                         }
                     }
-                }
 
+                }
             }
             names.RemoveAt(0);
             return names;
@@ -41,81 +43,96 @@ namespace UoMLibrary
 
             List<T> baseUnits = new List<T>();
             baseUnits.Add((T)Convert.ChangeType(addBase, typeof(T)));
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if ("Name" == xmlReader.Name.ToString())
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadString();
-
-                        if (name != textName)
+                        if ("Name" == xmlReader.Name.ToString())
                         {
-                            if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
+                            string name = xmlReader.ReadString();
+
+                            if (name != textName)
                             {
-                                string tobaseUnit = xmlReader.GetAttribute("baseUnit");
-                                if (tobaseUnit == baseunit && !name.Contains("POSC Units of Measure Dictionary"))
+                                if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
                                 {
-                                    baseUnits.Add((T)Convert.ChangeType(name, typeof(T)));
+                                    string tobaseUnit = xmlReader.GetAttribute("baseUnit");
+                                    if (tobaseUnit == baseunit && !name.Contains("POSC Units of Measure Dictionary"))
+                                    {
+                                        baseUnits.Add((T)Convert.ChangeType(name, typeof(T)));
+
+                                    }
 
                                 }
-
                             }
                         }
                     }
-                }
 
+                }
             }
             return baseUnits;
         }
 
         public string findTypeOfConversion(string baseunitName)
         {
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if ("Name" == xmlReader.Name.ToString())
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadString();
-                        if (name == baseunitName)
+                        if ("Name" == xmlReader.Name.ToString())
                         {
-                            if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
+                            string name = xmlReader.ReadString();
+                            if (name == baseunitName)
                             {
-                                if (xmlReader.ReadToDescendant("Formula"))
+                                if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
                                 {
-                                    baseunitName = "Formula";
-                                }
-                                else
-                                {
-                                    baseunitName = checkIfOther(baseunitName);
-                                }
+                                    if (xmlReader.ReadToDescendant("Formula"))
+                                    {
+                                        baseunitName = "Formula";
+                                    }
+                                    else
+                                    {
+                                        baseunitName = checkIfOther(baseunitName);
+                                    }
 
+                                }
                             }
                         }
                     }
-                }
 
+                }
             }
             return baseunitName;
         }
 
         public string findAnnotation(string annotation)
         {
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"); 
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if ("Name" == xmlReader.Name.ToString())
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadString();
-                        if (annotation.Contains("Base unit: "))
+                        if ("Name" == xmlReader.Name.ToString())
                         {
-                            string basename = String.Join(" ", annotation.Split(' ').Skip(2));
-                            if (name == basename)
+                            string name = xmlReader.ReadString();
+                            if (annotation.Contains("Base unit: "))
+                            {
+                                string basename = String.Join(" ", annotation.Split(' ').Skip(2));
+                                if (name == basename)
+                                {
+                                    if (xmlReader.ReadToNextSibling("CatalogSymbol"))
+                                    {
+
+                                        annotation = xmlReader.ReadElementContentAsString();
+
+                                    }
+                                }
+                            }
+                            else if (name == annotation)
                             {
                                 if (xmlReader.ReadToNextSibling("CatalogSymbol"))
                                 {
@@ -125,111 +142,108 @@ namespace UoMLibrary
                                 }
                             }
                         }
-                        else if (name == annotation)
-                        {
-                            if (xmlReader.ReadToNextSibling("CatalogSymbol"))
-                            {
-
-                                annotation = xmlReader.ReadElementContentAsString();
-
-                            }
-                        }
                     }
-                }
 
+                }
             }
             return annotation;
         }
 
         public string checkIfOther(string baseunitName)
         {
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if ("Name" == xmlReader.Name.ToString())
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadString();
-                        if (name == baseunitName)
+                        if ("Name" == xmlReader.Name.ToString())
                         {
-                            if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
+                            string name = xmlReader.ReadString();
+                            if (name == baseunitName)
                             {
-                                if (xmlReader.ReadToDescendant("Factor"))
+                                if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
                                 {
-                                    baseunitName = "Factor";
-                                }
-                                else
-                                {
-                                    baseunitName = "Fraction";
-                                }
+                                    if (xmlReader.ReadToDescendant("Factor"))
+                                    {
+                                        baseunitName = "Factor";
+                                    }
+                                    else
+                                    {
+                                        baseunitName = "Fraction";
+                                    }
 
+                                }
                             }
                         }
                     }
-                }
 
+                }
             }
             return baseunitName;
         }
 
         public string getBaseUnit(string baseunitName)
         {
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if ("Name" == xmlReader.Name.ToString())
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadString();
-                        if (name == baseunitName)
+                        if ("Name" == xmlReader.Name.ToString())
                         {
-                            if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
+                            string name = xmlReader.ReadString();
+                            if (name == baseunitName)
                             {
-                                string baseUnit = xmlReader.GetAttribute("baseUnit");
-                                baseunitName = baseUnit;
-                            }
-                            else
-                            {
-                                baseunitName = String.Format("Base unit: {0}", name);
+                                if (xmlReader.ReadToNextSibling("ConversionToBaseUnit"))
+                                {
+                                    string baseUnit = xmlReader.GetAttribute("baseUnit");
+                                    baseunitName = baseUnit;
+                                }
+                                else
+                                {
+                                    baseunitName = String.Format("Base unit: {0}", name);
 
+                                }
                             }
                         }
                     }
-                }
 
+                }
             }
             return baseunitName;
         }
 
         public string getBaseUnitName(string baseunitName, string annotation)
         {
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if ("Name" == xmlReader.Name.ToString())
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadString();
-                        if (xmlReader.ReadToNextSibling("CatalogSymbol"))
+                        if ("Name" == xmlReader.Name.ToString())
                         {
-                            string baseAnnotation = xmlReader.ReadString();
-
-                            if (baseAnnotation == annotation && xmlReader.ReadToNextSibling("BaseUnit"))
+                            string name = xmlReader.ReadString();
+                            if (xmlReader.ReadToNextSibling("CatalogSymbol"))
                             {
-                                string baseUnit = name;
-                                baseunitName = baseUnit;
-                                return baseunitName;
+                                string baseAnnotation = xmlReader.ReadString();
+
+                                if (baseAnnotation == annotation && xmlReader.ReadToNextSibling("BaseUnit"))
+                                {
+                                    string baseUnit = name;
+                                    baseunitName = baseUnit;
+                                    return baseunitName;
+                                }
+
                             }
 
+
                         }
-
-
                     }
-                }
 
+                }
             }
             return "nobase";
         }
@@ -341,7 +355,8 @@ namespace UoMLibrary
     {
             public string convertToBase(string baseunitName, double value, string conversionType)
             {
-                XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
+            {
                 while (xmlReader.Read())
                 {
                     if (xmlReader.IsStartElement())
@@ -405,6 +420,7 @@ namespace UoMLibrary
                         }
                     }
                 }
+            }
                 return null;
             }
 
@@ -419,7 +435,8 @@ namespace UoMLibrary
                 }
                 else
                 {
-                    XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
+                using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
+                {
                     while (xmlReader.Read())
                     {
                         if (xmlReader.IsStartElement())
@@ -483,6 +500,7 @@ namespace UoMLibrary
                             }
                         }
                     }
+                }
                 }
                 return "";
             }

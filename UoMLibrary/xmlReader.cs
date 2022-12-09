@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-
 namespace UoMLibrary
 {
     public class xmlReader : IxmlReader
@@ -31,55 +30,58 @@ namespace UoMLibrary
         {
 
             List<T> quantityClasses = new List<T>();
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
-            {
-                if (xmlReader.IsStartElement())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml")) { 
+                while (xmlReader.Read())
                 {
-                    if (xmlReader.Name.ToString() == "QuantityType")
+                    if (xmlReader.IsStartElement())
                     {
-                        string quantityType = xmlReader.ReadElementContentAsString();
-
-                        // Ensure we have a proper string to search for.
-                        if (!string.IsNullOrEmpty(quantityType))
+                        if (xmlReader.Name.ToString() == "QuantityType")
                         {
-                            if (!quantityClasses.Contains((T)Convert.ChangeType(quantityType, typeof(T))))
-                                quantityClasses.Add((T)Convert.ChangeType(quantityType, typeof(T)));
+                            string quantityType = xmlReader.ReadElementContentAsString();
+
+                            // Ensure we have a proper string to search for.
+                            if (!string.IsNullOrEmpty(quantityType))
+                            {
+                                if (!quantityClasses.Contains((T)Convert.ChangeType(quantityType, typeof(T))))
+                                    quantityClasses.Add((T)Convert.ChangeType(quantityType, typeof(T)));
+                            }
+
                         }
-
                     }
-                }
 
-            }
+                }
+                 }
             quantityClasses.RemoveAt(0);
             return quantityClasses;
         }
         public List<T> ListAllUOMforQC<T>(string selectedText)
         {
             List<T> unitOfMeasures = new List<T>();
-            XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml");
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(@"C:\Users\alexa\source\repos\UnitsOfMeasure\UoMLibrary\dataUnits.xml"))
             {
-                if (xmlReader.IsStartElement())
+                while (xmlReader.Read())
                 {
-                    if ("Name" == xmlReader.Name.ToString())
+                    if (xmlReader.IsStartElement())
                     {
-                        string name = xmlReader.ReadString();
-                        while (xmlReader.ReadToNextSibling("QuantityType") == true)
+                        if ("Name" == xmlReader.Name.ToString())
                         {
-                            string quantityType = xmlReader.ReadElementContentAsString();
-
-                            if (!string.IsNullOrEmpty(name) && quantityType == selectedText)
+                            string name = xmlReader.ReadString();
+                            while (xmlReader.ReadToNextSibling("QuantityType") == true)
                             {
-                                if (!unitOfMeasures.Contains((T)Convert.ChangeType(name, typeof(T))))
-                                    unitOfMeasures.Add((T)Convert.ChangeType(name, typeof(T)));
+                                string quantityType = xmlReader.ReadElementContentAsString();
+
+                                if (!string.IsNullOrEmpty(name) && quantityType == selectedText)
+                                {
+                                    if (!unitOfMeasures.Contains((T)Convert.ChangeType(name, typeof(T))))
+                                        unitOfMeasures.Add((T)Convert.ChangeType(name, typeof(T)));
+
+                                }
 
                             }
-
                         }
                     }
-                }
 
+                }
             }
             return unitOfMeasures;
         }
